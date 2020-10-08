@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Icon } from './todayStyles'
+import { Container, DayLocation, Icon, Temp, Weather } from './todayStyles'
 
 function Today({ weatherInfo }) {
 
@@ -12,13 +12,13 @@ function Today({ weatherInfo }) {
 
     switch(temp){
       case 'C':
-        return `${Math.round((weatherInfo.main.temp - 273.15 ))}°${temp}`;
+        return `${Math.round((weatherInfo.main.temp - 273.15 ))}`;
 
       case 'F':
-        return `${Math.round((weatherInfo.main.temp - 273.15) * (9/5) + 35)}°${temp}`;
+        return `${Math.round((weatherInfo.main.temp - 273.15) * (9/5) + 35)}`;
 
       default:
-        return `${Math.round((weatherInfo.main.temp - 273.15 ))}°${temp}`;
+        return `${Math.round((weatherInfo.main.temp - 273.15 ))}`;
     }
   }
 
@@ -26,14 +26,25 @@ function Today({ weatherInfo }) {
     <Container>
       <Icon
         src={`https://openweathermap.org/img/wn/${weatherInfo.weather[0].icon}@4x.png`}
-        alt={weatherInfo.weather[0].description}/>
-        <p>{tempHandler()}</p>
-        <p> {weatherInfo.weather[0].main} </p>
-        <p>{day[date.getDay()]}</p>
-        <p>{date.getDate()}</p>
-        <p>{month[date.getMonth()]}</p>
-        <p>{weatherInfo.name}</p>
-        <p> {weatherInfo.sys.country} </p>
+        alt={weatherInfo.weather[0].description}
+      />
+      <Temp>
+        <p className="temp">{tempHandler()}</p>
+        <p className="temp_deg">{`°${temp}`}</p>
+      </Temp>
+
+      <Weather>
+        <p className="weather"> {weatherInfo.weather[0].main} </p>
+      </Weather>
+
+      <DayLocation>
+        <p className="info" >
+          {`Today . ${day[date.getDay()]}, ${date.getDate()} ${month[date.getMonth()]}`}
+        </p>
+        <p className="info" >
+          {` ${weatherInfo.name}, ${weatherInfo.sys.country} `}
+        </p>
+      </DayLocation>
     </Container>
   );
 }

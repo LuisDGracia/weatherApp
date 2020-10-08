@@ -26,8 +26,6 @@ function App() {
     }
   }, []);
 
-  console.log(weather)
-
   return (
     <Fragment>
       { forecast !== undefined ? 
