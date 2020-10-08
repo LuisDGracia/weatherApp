@@ -1,10 +1,10 @@
 import React from 'react'
-import { Day, ForecastContainer } from './predictionStyles'
+import { Day, ForecastContainer } from './ForecastStyles'
 
 function Forecast({ forecast }) {
 
-  let date
-  let today = new Date()
+  let date;
+  let today = new Date();
   let lastDate;
   let day = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
   let month = [ 'Jan', 'Feb', 'Mar', 'Apr' , 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
@@ -20,13 +20,15 @@ function Forecast({ forecast }) {
             lastDate = date.getDay();
             return (
               <Day key={weather.dt} >
-                <p>{`${ day[date.getDay()] }, ${ date.getDate() } ${ month[date.getMonth()] }`}</p>
-                <img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`} alt="Weather icon"/>
-                <p> {`${weather.main.temp_min} ${weather.main.temp_max}`} </p>
+                <p className="day" >{`${ day[date.getDay()] }, ${ date.getDate() } ${ month[date.getMonth()] }`}</p>
+                <img className="day_img" src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="Weather icon"/>
+                <p className="tempMax"> {`${weather.main.temp_min}`} </p>
+                <p className="tempMin"> {`${weather.main.temp_max}`} </p>
               </Day>
             )
           }
         }
+        return true
       })}
     </ForecastContainer>
   );
