@@ -1,7 +1,8 @@
 import Today from '../TodayComponent/TodayComponent';
-import { Content, MainContainer } from './mainStyles';
+import { ContentContainer, Content, MainContainer } from './mainStyles';
 import React from "react";
 import Forecast from '../ForecastComponent/ForecastComponent';
+import Highlight from '../HightlightComponent/HighlightComponent';
 
 function Main({ forecastInfo, weatherInfo }) {
 
@@ -9,9 +10,16 @@ function Main({ forecastInfo, weatherInfo }) {
     <MainContainer>
       <Today weatherInfo={ weatherInfo }/>
 
-      <Content>
-        <Forecast forecast={ forecastInfo } />
-      </Content>
+      <ContentContainer>
+        <Content>
+          <Forecast forecast={ forecastInfo } />
+          <Highlight 
+            wind={ weatherInfo.wind }
+            humidity={ weatherInfo.main.humidity }
+            pressure={ weatherInfo.main.pressure }
+            visibility={ weatherInfo.visibility } />
+        </Content>
+      </ContentContainer>
 
     </MainContainer>
   );

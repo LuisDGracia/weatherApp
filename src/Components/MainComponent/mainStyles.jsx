@@ -6,8 +6,14 @@ export const MainContainer = styled.div`
   background-color: #100e1d;
 `;
 
-export const Content = styled.section`
+export const ContentContainer = styled.section`
   width: 70%;
+  display-flex;
+  align-items: center;
+`;
+
+export const Content = styled.div`
   display: flex;
   flex-flow: column wrap;
-`
+  align-content: center;
+`;
