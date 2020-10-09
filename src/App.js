@@ -1,12 +1,15 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import Main from './Components/MainComponent/MainComponent';
 import axios from 'axios';
+import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import './App.css';
 
 function App() {
 
   const [forecast, setForecast] = useState();
   const [weather, setWeather] = useState();
+  library.add( faLocationArrow );
 
   useEffect(() => {
     if ("geolocation" in navigator) {
