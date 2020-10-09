@@ -8,12 +8,12 @@ export const MainContainer = styled.div`
 
 export const ContentContainer = styled.section`
   width: 70%;
-  display-flex;
-  align-items: center;
 `;
 
 export const Content = styled.div`
+  height: 100%;
   display: flex;
   flex-flow: column wrap;
   align-content: center;
+  justify-content: space-around;
 `;

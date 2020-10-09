@@ -13,6 +13,7 @@ function Main({ forecastInfo, weatherInfo }) {
       <ContentContainer>
         <Content>
           <Forecast forecast={ forecastInfo } />
+          <h1>Today's Higlights</h1>
           <Highlight 
             wind={ weatherInfo.wind }
             humidity={ weatherInfo.main.humidity }
