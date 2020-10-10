@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import Main from './Components/MainComponent/MainComponent';
+import Main from './Components/MainComponent/MainComponent.jsx';
 import axios from 'axios';
 import { faLocationArrow, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
