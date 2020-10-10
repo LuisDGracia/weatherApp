@@ -1,13 +1,29 @@
 import React from 'react'
 import { Day, ForecastContainer } from './ForecastStyles'
 
-function Forecast({ forecast }) {
+function Forecast({ forecast, temp }) {
 
   let date;
-  let today = new Date();
   let lastDate;
+  let today = new Date();
   let day = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
   let month = [ 'Jan', 'Feb', 'Mar', 'Apr' , 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
+
+  const tempHandler = ( value ) => {
+    if (temp) {
+      return `${Math.round(value - 273.15)}`;
+    } else {
+      return `${Math.round((value - 273.15) * (9 / 5) + 35)}`;
+    }
+  };
+
+  const tempNotation = () => {
+    if (temp) {
+      return "C";
+    } else {
+      return "F";
+    }
+  };
 
   return (
     <ForecastContainer>
@@ -21,9 +37,9 @@ function Forecast({ forecast }) {
             return (
               <Day key={weather.dt} >
                 <p className="day" >{`${ day[date.getDay()] }, ${ date.getDate() } ${ month[date.getMonth()] }`}</p>
-                <img className="day_img" src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="Weather icon"/>
-                <p className="tempMax"> {`${weather.main.temp_min}`} </p>
-                <p className="tempMin"> {`${weather.main.temp_max}`} </p>
+                <img className="day_img" src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`} alt="Weather icon"/>
+                <p className="tempMax"> {`${tempHandler(weather.main.temp_min)}°${tempNotation()}`} </p>
+                <p className="tempMin"> {`${tempHandler(weather.main.temp_max)}°${tempNotation()}`} </p>
               </Day>
             )
           }
