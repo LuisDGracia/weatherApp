@@ -1,24 +1,27 @@
-import React, { useState } from 'react'
-import { Container, DayLocation, Icon, Temp, Weather } from './todayStyles'
+import { Container, DayLocation, Icon, Temp, Weather } from './todayStyles';
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 
-function Today({ weatherInfo }) {
+function Today({ weatherInfo, temp }) {
 
-  const [temp, setTemp] = useState('C');
   let date = new Date();
   let day = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
   let month = [ 'Jan', 'Feb', 'Mar', 'Apr' , 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
 
   const tempHandler = () =>{
+    if( temp ){
+      return `${Math.round(weatherInfo.main.temp - 273.15)}`;
+    }else{
+      return `${Math.round((weatherInfo.main.temp - 273.15) * (9 / 5) + 35)}`;
+    }
+  }
 
-    switch(temp){
-      case 'C':
-        return `${Math.round((weatherInfo.main.temp - 273.15 ))}`;
-
-      case 'F':
-        return `${Math.round((weatherInfo.main.temp - 273.15) * (9/5) + 35)}`;
-
-      default:
-        return `${Math.round((weatherInfo.main.temp - 273.15 ))}`;
+  const tempNotation = () => {
+    if( temp ){
+      return 'C'
+    }else{
+      return 'F'
     }
   }
 
@@ -30,18 +33,19 @@ function Today({ weatherInfo }) {
       />
       <Temp>
         <p className="temp">{tempHandler()}</p>
-        <p className="temp_deg">{`°${temp}`}</p>
+        <p className="temp_deg">{`°${tempNotation()}`}</p>
       </Temp>
 
       <Weather>
-        <p className="weather"> {weatherInfo.weather[0].main} </p>
+        <p> {weatherInfo.weather[0].main} </p>
       </Weather>
 
       <DayLocation>
         <p className="info" >
           {`Today . ${day[date.getDay()]}, ${date.getDate()} ${month[date.getMonth()]}`}
         </p>
-        <p className="info" >
+        <FontAwesomeIcon className="location" icon={faMapMarkerAlt} />
+        <p className="location" >
           {` ${weatherInfo.name}, ${weatherInfo.sys.country} `}
         </p>
       </DayLocation>
