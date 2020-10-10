@@ -1,16 +1,20 @@
 import styled from 'styled-components'
+import { device } from "../../mediaQueries";
 
 export const HightlightContainer = styled.div`
-  width: 80%;
-  padding-top: 1.05rem;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-content: center;
-`
+
+  @media ${device.laptop} {
+    width: 90%;
+  }
+`;
 
 export const HiglightContent = styled.div`
-  width: 35%;
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -25,43 +29,70 @@ export const HiglightContent = styled.div`
   }
 
   .title {
-    font-size: 1.5rem;
     width: 100%;
     text-align: center;
     color: rgba(255, 255, 255, 0.7);
   }
 
   .data {
-    margin-top: 1.05rem;
     width: 100%;
-    font-size: 3rem;
+    font-size: 2.2rem;
     font-weight: bold;
     text-align: center;
     color: rgba(255, 255, 255, 0.7);
   }
 
+  .direction {
+    font-size: 1.1rem;
+    margin-left: 10px;
+    margin-top: 5px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .mb-0 {
+    margin-bottom: 0;
+  }
+
+  .text {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .text > p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #ccc;
+  }
+
+  @media ${device.tablet} {
+    width: 40%;
+  }
+
+  @media ${device.laptop} {
+    width: 35%;
+  }
 `;
 
 export const Icon = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
 
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: center;
-  line-height: 40px;
+  line-height: 30px;
 
   color: rgba(255, 255, 255, 0.7);
   background-color: rgba(255, 255, 255, 0.3);
 
-  ${({rotation}) => `transform: rotate(${rotation}deg);`}
+  ${({rotation}) => `transform: rotate(${rotation-45}deg);`}
 `;
 
 export const ProgressBar = styled.progress`
   appearance: none;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
-  margin-top: 1.4rem;
 
   ::-webkit-progress-value {
     background: #2f80ed;
@@ -69,7 +100,8 @@ export const ProgressBar = styled.progress`
   }
 
   ::-webkit-progress-bar {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
   }
+
 `;
