@@ -1,8 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import Main from './Components/MainComponent/MainComponent.jsx';
-import axios from 'axios';
 import { faLocationArrow, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
+import { Switch, Route} from 'react-router-dom';
+import React, { Fragment, useEffect, useState } from 'react';
+import Main from './Components/MainComponent/MainComponent';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import axios from 'axios';
 import './App.css';
 
 function App() {
@@ -29,15 +30,23 @@ function App() {
     }
   }, []);
 
+  const reload = () => window.location.reload;
+
   return (
     <Fragment>
-      { forecast !== undefined ? 
-        <Main
-          weatherInfo={weather}
-          forecastInfo={forecast.list}/>
-      :  <p>loading...</p> }
+      {forecast !== undefined ? (
+        <Switch>
+          <Route path="/">
+            <Main weatherInfo={weather} forecastInfo={forecast.list} />
+          </Route>
+          <Route path="/.well-known/pki-validation/C00708A6A0C829CBBAFF63D1E8AB82D2.txt" onEnter={reload} />
+        </Switch>
+      ) : (
+        <p>loading...</p>
+      )}
     </Fragment>
   );
 }
+
 
 export default App;
